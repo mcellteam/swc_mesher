@@ -6,4 +6,4 @@ This addon can read an SWC formatted file and generate either a line object or a
 
 * **[Source Files](files/source)**
 
-![Mesh](file/images/P40-DEV360_mesh_center.png?raw=true "Meshed Neuron")
+![Mesh](files/images/P40-DEV360_mesh_center.png?raw=true "Meshed Neuron")
