@@ -5,6 +5,7 @@
 This addon can read an SWC formatted file and generate either a line object or a mesh object.
 
 * **[Description/Tutorial](files/description)**
+* **[Tips and Usage Notes](files/notes)**
 * **[Examples](files/examples)**
 * **[Source Files](files/source)**
 
