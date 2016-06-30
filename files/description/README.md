@@ -1,5 +1,5 @@
 # SWC Mesher
-## Description
+## Description / Tutorial
 
 Start by enabling the add-on using the *File/User Preferences* menu and selecting the **Add Mesh** section and checking the box for the **SWC Mesher** add-on.
 
@@ -13,7 +13,7 @@ Start by opening the **Original File** subpanel and use the file navigator to se
 
 ![SelectFile](../images/select_a_file.png?raw=true "Selecting a File")
 
-Navagate to an SWC file. In this example we'll use the P40-DEV360.CNG.swc.txt file shown here: ::
+Navagate to an SWC file. In this example we'll use the P40-DEV360.CNG.swc.txt file shown here (copy and save as a text file for testing):
 
 ```
 # SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
@@ -110,7 +110,4 @@ centerline (shown selected in orange):
 The resulting mesh can be added to a CellBlender project as part of a simulation:
 
 ![Simulate](../images/short_animation.gif?raw=true "CellBlender/MCell Simulation")
-
-
-![Mesh](../images/P40-DEV360_mesh_center.png?raw=true "Meshed Neuron")
 
