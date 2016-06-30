@@ -7,12 +7,12 @@ from bpy.props import *
 import bmesh
 
 bl_info = {
-	"name": "Neuron Builder Meta",
+	"name": "SWC Mesher",
 	"author": "Bob Kuczewski",
 	"version": (1,0,0),
 	"blender": (2,6,6),
 	"location": "View 3D > Edit Mode > Tool Shelf",
-	"description": "Generate a Neuron Mesh",
+	"description": "Generate a Neuron Mesh from an SWC formatted file",
 	"warning" : "",
 	"wiki_url" : "http://salk.edu",
 	"tracker_url" : "",
@@ -20,11 +20,15 @@ bl_info = {
 }
 
 class MakeNeuronMeta_Panel(bpy.types.Panel):
-  bl_label = "BuildNeuronMeta"
-  bl_space_type = "PROPERTIES"
-  bl_region_type = "WINDOW"
-  bl_context = "scene"
-  bl_options = {'DEFAULT_CLOSED'}
+  bl_label = "SWC Mesher"
+
+  bl_space_type = "VIEW_3D"
+  bl_region_type = "TOOLS"
+  bl_category = "SWC Mesher"
+
+  @classmethod
+  def poll(cls, context):
+    return (context.scene is not None)
 
   def draw(self, context):
     mnm = context.scene.make_neuron_meta
@@ -33,6 +37,7 @@ class MakeNeuronMeta_Panel(bpy.types.Panel):
 class MakeNeuronStick_Operator ( bpy.types.Operator ):
   bl_idname = "mnm.make_line_mesh"
   bl_label = "Make Line Mesh from File"
+  bl_description = "Generate a skeleton of line segments from the SWC file directly"
   bl_options = {"REGISTER", "UNDO"}
   bl_space_type = "PROPERTIES"
   bl_region_type = "WINDOW"
@@ -53,6 +58,7 @@ class MakeNeuronStick_Operator ( bpy.types.Operator ):
 class SaveNeuronStick_Operator ( bpy.types.Operator ):
   bl_idname = "mnm.save_as_update"
   bl_label = "Save Line Mesh Update File"
+  bl_description = "Generate an SWC file of segments from the skeleton (creates filename.out.swc)"
   bl_options = {"REGISTER", "UNDO"}
   bl_space_type = "PROPERTIES"
   bl_region_type = "WINDOW"
@@ -82,6 +88,7 @@ class SaveNeuronStick_Operator ( bpy.types.Operator ):
 class MakeNeuronMeta_Operator ( bpy.types.Operator ):
   bl_idname = "mnm.make_neuron_from_file"
   bl_label = "Make Surface Mesh from File"
+  bl_description = "Generate a surface mesh from the SWC file"
   bl_options = {"REGISTER", "UNDO"}
   bl_space_type = "PROPERTIES"
   bl_region_type = "WINDOW"
@@ -104,6 +111,7 @@ class MakeNeuronMeta_Operator ( bpy.types.Operator ):
 class MakeNeuronMeta_Operator ( bpy.types.Operator ):
   bl_idname = "mnm.make_neuron_from_data"
   bl_label = "Make Surface Mesh from Data"
+  bl_description = "Generate a surface mesh from the current skeleton"
   bl_options = {"REGISTER", "UNDO"}
   bl_space_type = "PROPERTIES"
   bl_region_type = "WINDOW"
@@ -126,6 +134,7 @@ class MakeNeuronMeta_Operator ( bpy.types.Operator ):
 class MakeNeuronMetaAnalyze_Operator ( bpy.types.Operator ):
   bl_idname = "mnm.analyze_file"
   bl_label = "Analyze File"
+  bl_description = "Read the file to determine numbers of segments, nodes, and various size ranges"
   bl_options = {"REGISTER", "UNDO"}
   bl_space_type = "PROPERTIES"
   bl_region_type = "WINDOW"
@@ -171,10 +180,10 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
   min_z = FloatProperty ( default=-1 )
   max_z = FloatProperty ( default=-1 )
   
-  scale_file_data = FloatProperty ( default=1.0, precision=4 )
-  mesh_resolution = FloatProperty ( default=0.1, precision=4 )
-  min_forced_radius = FloatProperty ( default=0.0, precision=4 )
-  num_segs_limit = IntProperty ( default=0 )
+  scale_file_data = FloatProperty ( default=1.0, precision=4, description="Scale factor applied to data read from a file" )
+  mesh_resolution = FloatProperty ( default=0.1, precision=4, description="Intended resolution of the final mesh" )
+  min_forced_radius = FloatProperty ( default=0.0, precision=4, description="Smallest radius allowed in all segments (smaller forced up to this radius)" )
+  num_segs_limit = IntProperty ( default=0, description="Only generate this number of segments (useful for testing settings in large neurons)" )
 
 
   def draw ( self, layout ):
@@ -779,7 +788,7 @@ def add_to_menu ( self, context ):
 
 
 def register():
-  print ( "NeuronMetaBuilder.py: register() called ... note that there is a bl_rna is in bpy.context" )
+  print ( __name__ + ": register() called ... note that there is a bl_rna is in bpy.context" )
   bpy.utils.register_module(__name__)
   bpy.types.Scene.make_neuron_meta = bpy.props.PointerProperty(type=MakeNeuronMetaPropGroup)
   #bpy.utils.register_class ( MakeNeuronMeta )
@@ -787,7 +796,7 @@ def register():
 
 
 def unregister():
-  print ( "NeuronBuilder.py: unregister() called ... note that there is a bl_rna is in bpy.context" )
+  print ( __name__ + ": unregister() called ... note that there is a bl_rna is in bpy.context" )
   bpy.utils.unregister_module(__name__)
   #bpy.utils.unregister_class ( MakeNeuronMeta )
   #bpy.types.INFO_MT_mesh_add.remove(add_to_menu)
