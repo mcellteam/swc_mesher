@@ -13,8 +13,9 @@ Start by opening the **Original File** subpanel and use the file navigator to se
 
 ![SelectFile](../images/select_a_file.png?raw=true "Selecting a File")
 
-Navagate to an SWC file. In this example we'll use the P40-DEV360.CNG.swc.txt file shown here:
+Navagate to an SWC file. In this example we'll use the P40-DEV360.CNG.swc.txt file shown here: ::
 
+```
   # SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
   # Original fileName:/cng_repository/Soumya/LM_Automated_Testing_Enviornment/Test_Lm3.7.2_10062011_SG_Linux_NMOConv6/TestResults/LoadTest/test_10/P40-DEV360.CNG.swc
   #
@@ -56,6 +57,7 @@ Navagate to an SWC file. In this example we'll use the P40-DEV360.CNG.swc.txt fi
    30 3 -5.35   1    2.12 0.67    29
    31 3 -5.69   1    2.12 0.67    30
    32 3 -7.69   4.34 2.12 0.67    31
+```
 
 After opening that file, you should see an overview below the "Analyze File" button:
 
