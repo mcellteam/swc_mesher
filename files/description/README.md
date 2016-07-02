@@ -4,6 +4,36 @@
 The SWC Mesher add-on can create both 3D centerline (stick figure) and 3D mesh representations of neurons from SWC files.
 The meshes produced may be used directly with CellBlender or further improved with tools like GAMer.
 
+SWC files are available from a number of sources including neuromorpho.org. SWC file format is described in FAQ available
+at http://neuromorpho.org/myfaq.jsp (reproduced here).
+
+```
+Q:	What is SWC format?
+A: 	The three dimensional structure of a neuron can be represented in a SWC format (Cannon et al., 1998). 
+SWC is a simple Standardized format. Each line has 7 fields encoding data for a single neuronal compartment:
+
+    an integer number as compartment identifier
+    type of neuronal compartment
+       0 - undefined
+       1 - soma
+       2 - axon
+       3 - basal dendrite
+       4 - apical dendrite
+    x coordinate of the compartment
+    y coordinate of the compartment
+    z coordinate of the compartment
+    radius of the compartment
+    parent compartment
+
+Every compartment has only one parent and the parent compartment for the first point in each file is 
+always -1 (if the file does not include the soma information then the originating point of the tree will 
+be connected to a parent of -1). The index for parent compartments are always less than child compartments. 
+Loops and unconnected branches are excluded. All trees should originate from the soma and have parent 
+type 1 if the file includes soma information. Soma can be a single point or more than one point. When the 
+soma is encoded as one line in the SWC, it is interpreted as a "sphere". When it is encoded by more than 1 line, 
+it could be a set of tapering cylinders (as in some pyramidal cells) or even a 2D projected contour ("circumference").
+```
+
 ## Short Tutorial
 
 Start by enabling the add-on using the *File/User Preferences* menu and selecting the **Add Mesh** section and checking the box for the **SWC Mesher** add-on.
