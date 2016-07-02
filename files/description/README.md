@@ -47,7 +47,7 @@ Start by opening the **Original File** subpanel and use the file navigator to se
 
 ![SelectFile](../images/select_a_file.png?raw=true "Selecting a File")
 
-Navagate to an SWC file. In this example we'll use the P40-DEV360.CNG.swc.txt file (available at http://neuromorpho.org/KeywordResult.jsp?str=P40-DEV360). That file is reproduced here (copy and save as a text file for testing):
+Navagate to an SWC file. In this example we'll use the P40-DEV360.CNG.swc file (available at http://neuromorpho.org/KeywordResult.jsp?str=P40-DEV360). That file is reproduced here (copy and save as a text file for testing):
 
 ```
 # SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
