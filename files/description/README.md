@@ -4,8 +4,7 @@
 The SWC Mesher add-on can create both 3D centerline (stick figure) and 3D mesh representations of neurons from SWC files.
 The meshes produced may be used directly with CellBlender or further improved with tools like GAMer.
 
-SWC files are available from a number of sources including neuromorpho.org. SWC file format is described in FAQ available
-at http://neuromorpho.org/myfaq.jsp (reproduced here).
+SWC files (Stockley-Wheal-Cannon, Cannon et al., 1998) are available from a number of sources including neuromorpho.org. SWC file format is described in a FAQ available at http://neuromorpho.org/myfaq.jsp (reproduced here).
 
 ```
 Q:	What is SWC format?
