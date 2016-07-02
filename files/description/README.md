@@ -1,5 +1,10 @@
 # SWC Mesher
-## Description / Tutorial
+## Description
+
+The SWC Mesher add-on can create both 3D centerline (stick figure) and 3D mesh representations of neurons from SWC files.
+The meshes produced may be used directly with CellBlender or further improved with tools like GAMer.
+
+## Short Tutorial
 
 Start by enabling the add-on using the *File/User Preferences* menu and selecting the **Add Mesh** section and checking the box for the **SWC Mesher** add-on.
 
@@ -64,8 +69,8 @@ After opening that file, you should see an overview below the "Analyze File" but
 ![Overview](../images/opened_P40.png?raw=true "Overview after opening")
 
 This shows that the file contains 32 non-comment lines, 31 segments, and 32 nodes. The
-largest radius of all nodes is 2.5ss, and the smallest is 0.67. The spatial extent of the
-neuron is contained within the X, Y, and Z ranges.
+largest radius of all nodes is 2.52, and the smallest is 0.67. The spatial extent of the
+neuron is contained within the X, Y, and Z ranges shown.
 
 You can create a line mesh object in Blender from that file by opening the **"Line Mesh"** 
 panel and clicking the **"Make Line Mesh from File"** button as shown here:
