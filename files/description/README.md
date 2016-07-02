@@ -12,18 +12,18 @@ Q:	What is SWC format?
 A: 	The three dimensional structure of a neuron can be represented in a SWC format (Cannon et al., 1998). 
 SWC is a simple Standardized format. Each line has 7 fields encoding data for a single neuronal compartment:
 
-    an integer number as compartment identifier
-    type of neuronal compartment
+  * an integer number as compartment identifier
+  * type of neuronal compartment
        0 - undefined
        1 - soma
        2 - axon
        3 - basal dendrite
        4 - apical dendrite
-    x coordinate of the compartment
-    y coordinate of the compartment
-    z coordinate of the compartment
-    radius of the compartment
-    parent compartment
+  * x coordinate of the compartment
+  * y coordinate of the compartment
+  * z coordinate of the compartment
+  * radius of the compartment
+  * parent compartment
 
 Every compartment has only one parent and the parent compartment for the first point in each file is 
 always -1 (if the file does not include the soma information then the originating point of the tree will 
