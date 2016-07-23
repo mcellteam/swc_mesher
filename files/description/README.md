@@ -113,7 +113,8 @@ panel and clicking the **"Make Surface Mesh from File"** button as shown here:
 
 As shown here, the add-on will create a series of "Meta" objects which form the surface of the Neuron. 
 This isn't a mesh at this point, but can be easily converted to a mesh by selecting the object (right
-clicking to turn from dark orange to lighter "gold") and then using the menu commands:
+clicking to turn from dark orange to lighter "gold") and then using the menu commands 
+(Object / Convert to / Mesh from Curve/Meta/Surf/Text) as shown here:
 
 ![Convert](../images/convert_to_mesh.png?raw=true "Convert Meta to Mesh")
 
@@ -131,7 +132,7 @@ have 30,128 vertices, 90,378 edges, and 60,252 faces.
 
 This mesh can be used in CellBlender or MCell, but it has many more triangles than needed, and the
 geometry is often poor quality for simulation. There are a number of ways to improve the mesh, and
-the following picture show the result of applying the Coarse Dense, Coarse Flat, and Smooth operators
+the following picture shows the result of applying the Coarse Dense, Coarse Flat, and Smooth operators
 available in the Blender version of GAMER (https://github.com/mcellteam/gamer). Here's the final mesh:
 
 ![Gamer](../images/gamer_mesh.png?raw=true "Gamer Mesh")
