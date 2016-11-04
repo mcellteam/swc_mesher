@@ -8,12 +8,25 @@ import bmesh
 
 from bpy_extras.io_utils import ExportHelper
 
+bl_info = {
+	"name": "SWC Mesher",
+	"author": "Bob Kuczewski, Oliver Ernst",
+	"version": (1,0,1),
+	"blender": (2,7,7),
+	"location": "View 3D > Edit Mode > Tool Shelf",
+	"description": "Generate a Neuron Mesh from an SWC formatted file",
+	"warning" : "",
+	"wiki_url" : "http://salk.edu",
+	"tracker_url" : "",
+	"category": "Add Mesh",
+}
+
 class MakeNeuronMeta_Panel(bpy.types.Panel):
-	bl_label = "Neuron Launcher - SWC Mesher"
+	bl_label = "SWC Mesher"
 
 	bl_space_type = "VIEW_3D"
 	bl_region_type = "TOOLS"
-	bl_category = "Neuron Launcher"
+	bl_category = "SWC Mesher"
 
 	@classmethod
 	def poll(cls, context):
@@ -1155,3 +1168,17 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			bpy.ops.object.convert()
 
 		obj.select = True
+
+
+def register():
+  bpy.utils.register_module(__name__)
+  bpy.types.Scene.make_neuron_meta = bpy.props.PointerProperty(type=MakeNeuronMetaPropGroup)
+
+
+def unregister():
+  bpy.utils.unregister_module(__name__)
+
+
+if __name__ == "__main__":
+  print ("Registering")
+  register()

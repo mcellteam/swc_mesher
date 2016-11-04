@@ -1,7 +1,7 @@
 # Simply provide a means of copying from git working directory to Blender addon directory
 
 # Linux:
-INSTALL_DIR = ~/.config/blender/2.77/scripts/addons/
+INSTALL_DIR = ~/.config/blender/2.78/scripts/addons/
 
 # Mac:
 #INSTALL_DIR = ~/Library/Application\ Support/Blender/2.74/scripts/addons/
