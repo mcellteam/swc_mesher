@@ -43,7 +43,9 @@ Select the "SWC Mesher" tab along the left side of the 3D View:
 
 ![Installed](../images/newly_installed.png?raw=true "Newly Installed SWC Mesher")
 
-Start by opening the **Original File** subpanel and use the file navigator to select an SWC format file:
+### Importing Cable Models
+
+Start by opening the **Import Cable Model from SWC File** subpanel and use the file navigator to select an SWC format file:
 
 ![SelectFile](../images/select_a_file.png?raw=true "Selecting a File")
 
@@ -101,15 +103,53 @@ This shows that the file contains 32 non-comment lines, 31 segments, and 32 node
 largest radius of all nodes is 2.52, and the smallest is 0.67. The spatial extent of the
 neuron is contained within the X, Y, and Z ranges shown.
 
-You can create a line mesh object in Blender from that file by opening the **"Line Mesh"** 
-panel and clicking the **"Make Line Mesh from File"** button as shown here:
+You can create a line mesh object in Blender from that file by clicking the **"Make Cable Model from File"** button as shown here:
 
-![LineMesh](../images/make_line_mesh.png?raw=true "Making a Line Mesh")
+![LineMesh](../images/make_line_mesh.png?raw=true "Making a cable model")
 
-You can create a surface mesh object in Blender from that file by opening the **"Surface Mesh"** 
-panel and clicking the **"Make Surface Mesh from File"** button as shown here:
+The following panel shows the resultant cable model:
+![LineMeshResultant](../images/make_line_mesh_result.png?raw=true "Resultant cable model")
+
+### Editing Cable Models
+
+The second panel **"Edit Cable Model"** contains several tools to (1) edit the cable model, and (2) extrapolate a surface mesh from the cable. The cable model you are currently editing is the one that you have **selected** in the **"List of Cable Models"**. To add cable models to this list, select the cable model and press the appropriate cable model in Blender and press the + button. Alternatively, use the - and X buttons to remove models from the edit list.
+
+#### Editing the geometry/connectivity
+
+You can edit cable models directly in Blender. Extrapolate points, delete points, and make new edges using all the default Blender tools in edit mode. After editing the cable, the internal data model that is used by Blender to represent the cable must be updated. To do this, press the **"Update Cable Model from Geometry"** button - unfortunately, this cannot be done automatically. The internal data model must be updated for any edits to take effect. Note that this update does not provide feedback.
+
+**Also Note:** editing the cable model such that it does not meet the criteria for being a correct cable model (e.g. is edited to contain a loop) will lead to errors. 
+
+An example of extrapolating points is shown in the following panels.
+![EditGeometry1](../images/edit_geometry_1.png?raw=true "Edit cable model geometry: Before edits")
+![EditGeometry2](../images/edit_geometry_2.png?raw=true "Edit cable model geometry: After edits")
+**Remember** to update the cable model's internal data model via the **"Update Cable Model from Geometry"** button after edits are finished!
+![EditGeometry3](../images/edit_geometry_3.png?raw=true "Edit cable model geometry: Update the data model after editing")
+
+#### Editing the radii
+
+The cable model is really a ball-and-stick model, in the sense that a radius is associated with each point. To edit these radii, press the **"Make Spheres for each Vertex"** button:
+![EditRadii1](../images/edit_radii_1.png?raw=true "Edit cable model radii: Generate spheres")
+Use the **"Show"/"Hide"/"Delete All"** buttons to toggle the sphere's visibility. Use the **scale tool** (press "s") to edit the radii of different spheres. You may also move the spheres using the **grab tool** (press "g") to edit the geometry.
+![EditRadii2](../images/edit_radii_2.png?raw=true "Edit cable model radii: Before editing radii")
+![EditRadii3](../images/edit_radii_3.png?raw=true "Edit cable model radii: After editing radii")
+**Remember** to update the cable model's internal data model via the **"Update Cable Model from Spheres"** button after edits are finished, as shown below:
+![EditRadii4](../images/edit_radii_4.png?raw=true "Edit cable model radii: Update the data model after editing")
+Note that this does not provide any feedback. The internal data model must be updated for any edits to take effect. To check that the data model has been updated correctly, press the **"Delete All"** button to delete all the spheres, and then again press the **"Make Spheres for each Vertex"** button.
+
+#### Editing multiple cable models
+
+You can edit multiple cable models by adding them to the **"List of Cable Models"** to edit. Follow the steps above in the **"Import Cable Model from SWC File"** panel to import a second SWC file. After importing, the new cable model will be automatically added to the list of cable models to edit. Alternatively, select the cable model in Blender, and use the + button to add the cable model:
+![EditMultiple1](../images/edit_multiple_1.png?raw=true "Edit multiple cable models")
+The cable model that you are currently editing or extrapolating a surface mesh from is the one that is actively selected in the **"List of Cable Models"**:
+![EditMultiple2](../images/edit_multiple_2.png?raw=true "Cable model being edited")
+
+### Extrapolating Surface Meshes from the Cable Model
+
+You can create a surface mesh object in Blender from that file by opening the **"Surface Mesh"** panel and clicking the **"Make Surface Mesh from File"** button as shown here:
 
 ![SurfMesh](../images/make_surface_mesh.png?raw=true "Making a Surface Mesh")
+![ResultantSurfMesh](../images/make_surface_mesh_result.png?raw=true "Resultant Surface Mesh")
 
 As shown here, the add-on will create a series of "Meta" objects which form the surface of the Neuron. 
 This isn't a mesh at this point, but can be easily converted to a mesh by selecting the object (right

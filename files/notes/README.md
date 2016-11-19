@@ -1,27 +1,22 @@
 # SWC Mesher
 ## Notes
 
-The SWC Mesher control panel contains 3 primary subpanels:
+The SWC Mesher control panel contains 2 primary subpanels:
 
- * **Original File**
- * **Line Mesh**
- * **Surface Mesh**
+ * **Import Cable Model from SWC File**
+ * **Edit Cable Model**
 
 ![Panel](../images/controls.png?raw=true "Control Panel")
 
-The **Original File** section is used to select SWC files and read them into memory.
+The **Import Cable Model from SWC File** section is used to select SWC files and read them into memory.
 It also shows the number of non-comment lines, the number of segments, the largest and smallest radius, and the bounding box size in x, y, and z.
 The **Analyze File** button will re-read the file (in case it's been changed) and update the displayed values.
 
-The **Line Mesh** section is used to generate line meshes and to save an updated SWC file. The **"Make Line Mesh from File"** button
-will generate a skeleton directly from the SWC file. The skeleton will contain all the points and segments from the original file.
-The **"Save Line Mesh Update File"** button generates a new SWC file from the locations of Blender's line mesh. The new file name will be
-the same as the original with an additional ".out.swc" appended to the end of the name. This is useful for modifying the line mesh and saving
-it in SWC format. Note that the only editing that should be done is moving of points. This addresses one of the most common problems with many
-SWC files - intersecting branches. When branches intersect, the resulting mesh is typically not suitable for MCell simulation. The line mesh
-editing can be used to move branches slightly so they do not intersect.
+The **Make Cable Model from File** button will create a cable model in Blender. The skeleton will contain all the points and segments from the original file.
 
-The **Surface Mesh** section contains two buttons and a number of settings for surface mesh generation. The **"Make Surface Mesh from File"** button
+The **Edit Cable Model** section contains tools to edit the cable model, as well as tools to extrapolate a surface mesh from the cable. For details on editing the cable model, see the * **[Description/Tutorial](../description)**.
+
+The **"Make Surface Mesh from File"** button
 will generate a surface mesh from the currently selected file. The **"Make Surface Mesh from Data"** button will generate a surface mesh from the
 current centerline data (or skeleton). This allows comparison of changes made to the current skeleton. Note, however, that because of the way
 Blender implements the "meta" objects, there can only be one object in the "meta" state. Additional meta objects will be merged into any existing
