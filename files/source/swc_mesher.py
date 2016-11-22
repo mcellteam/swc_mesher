@@ -55,6 +55,23 @@ class MakeNeuronStick_Operator ( bpy.types.Operator ):
 		context.scene.make_neuron_meta.build_neuron_stick_from_file ( context )
 		return {"FINISHED"}
 
+class MakeEmptyStick_Operator(bpy.types.Operator):
+	bl_idname = "mnm.make_new_cable"
+	bl_label = "Make New Cable Model"
+	bl_description = "Make a new cable model from scratch"
+	bl_options = {"REGISTER", "UNDO"}
+	bl_space_type = "PROPERTIES"
+	bl_region_type = "WINDOW"
+	bl_context = "objectmode"
+
+	def execute ( self, context ):
+		context.scene.make_neuron_meta.make_new_cable_model ( context )
+		return {"FINISHED"}
+
+	def invoke ( self, context, event ):
+		context.scene.make_neuron_meta.make_new_cable_model ( context )
+		return {"FINISHED"}
+
 
 #######################################################
 #######################################################
@@ -448,6 +465,9 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			row.label("List of Cable Models", icon='CURVE_DATA')
 
 			row = box.row()
+			row.operator("mnm.make_new_cable")
+
+			row = box.row()
 			col = row.column()
 		
 			col.template_list("SWCMesher_UL_object", "",
@@ -519,6 +539,66 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			row = subbox.row()
 			row.operator ( "mnm.make_neuron_from_file" )
 			row.operator ( "mnm.make_neuron_from_data" )
+
+
+	###
+	# Function to make a new cable model from scratch
+	###
+
+	def make_new_cable_model(self, context):
+
+		# Get the current cursor location
+		cursor_loc = context.scene.cursor_location
+
+		# New vertex locations
+		v1 = (cursor_loc[0]-2.0,cursor_loc[1],cursor_loc[2])
+		v2 = (cursor_loc[0]+2.0,cursor_loc[1],cursor_loc[2])
+		vs = (v1,v2)
+
+		# Connecting line
+		ls = [[0,1]]
+
+		# Make new mesh
+		new_mesh = bpy.data.meshes.new ( "cable_model_mesh" )
+		new_mesh.from_pydata ( vs, ls, [] )
+		new_mesh.update()
+		new_obj = bpy.data.objects.new ( "cable_model_mesh", new_mesh )
+		context.scene.objects.link ( new_obj )
+
+		# Add metadata
+		mesh = new_obj.data
+		index_number_layer = mesh.vertex_layers_float.new(name="index_number")
+		parent_index_layer = mesh.vertex_layers_float.new(name="parent_index")
+		segment_type_layer = mesh.vertex_layers_float.new(name="segment_type")
+		radius_layer       = mesh.vertex_layers_float.new(name="radius")
+
+		# Indexes
+		index_number_layer.data[0].value = 1
+		index_number_layer.data[1].value = 2
+
+		# Parents
+		parent_index_layer.data[0].value = -1
+		parent_index_layer.data[1].value = 1
+
+		# Radii
+		radius_layer.data[0].value = 1.0
+		radius_layer.data[1].value = 1.0
+
+		# Segment type - just make it a dendrite
+		segment_type_layer.data[0].value = 3
+		segment_type_layer.data[1].value = 3
+
+		# Finally, add the new cable model to the list of cable models to edit
+
+		# Deselect all objects currently selected
+		bpy.ops.object.select_all(action='DESELECT')
+
+		# Select the new obj and make it active
+		new_obj.select = True
+		context.scene.objects.active = new_obj
+
+		# Add to the list
+		self.cable_model_add_func(context)
 
 
 	#####
@@ -1317,16 +1397,6 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			new_mesh.update()
 			new_obj = bpy.data.objects.new ( swc_fname + "_cable_model", new_mesh )
 			context.scene.objects.link ( new_obj )
-
-			# Add the radius as the bevel weight, so the user can modify it
-			idx = 0
-			for k in point_keys:
-				p = point_dict[k]
-				# Get the vertex in the object
-				v = new_obj.data.vertices[idx]
-				idx += 1
-				# Set the bevel weight
-				v.bevel_weight = float(p[5])
 
 			'''
 			# All points
