@@ -515,10 +515,8 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			col.label("After editing the radii:")
 			col.operator ( "mnm.update_cable_from_spheres" )
 
-			row = subbox.row()
-			split = subbox.split()
-			col = split.column(align=True)
-			col.operator ( "mnm.export_swc" )
+			row = box.row()
+			row.operator ( "mnm.export_swc" )
 
 			###
 			# Extrapolate surface mesh from cable model
@@ -675,6 +673,7 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 		# No duplicates
 		return
 
+
 	# Update cable model post extrusion/deletion
 	def update_cable_model_post_edit( self, context ):
 
@@ -773,6 +772,7 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			# POSSIBLE TO-DO HERE: PRESERVE THE RADIUS OF EXISTING SPHERES
 			# Grab their radii, and upload onto the new spheres
 
+
 	# Add spheres to the cable model for visualizing the vertices
 	def make_spheres_from_object( self, context ):
 
@@ -824,6 +824,7 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 
 			# Rename it appropriately
 			new_ob.name = (ob_name+ "_vertex_" + v_name) % idx 
+
 
 	# Update the cable model based on the sphere locations
 	def update_cable_model_from_spheres( self, context ):
@@ -908,6 +909,7 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 				f.write ( l + "\n" )
 			f.close()
 
+
 	# Show/Hide all vertex spheres
 	def hide_vertex_spheres(self, context, flag):
 
@@ -924,6 +926,7 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 		for ob_vertex in bpy.data.objects:
 			if len(ob_vertex.name) >= 7+lo and ob_vertex.name[0:(7+lo)] == ob_name + "_vertex":
 				ob_vertex.hide = flag
+
 
 	# Delete all vertex spheres
 	def delete_vertex_spheres(self, context):
@@ -973,14 +976,17 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 		for ob_select in bpy.data.objects:
 			if ob_select.name in ob_sel_list:
 				ob_select.select = True
-	
+
+
 	###
 	# Functions to make the surface mesh
 	###
 
+
 	def file_name_change ( self ):
 		self.read_segments_from_file()
 		# self.file_analyzed = True
+
 
 	def read_segments_from_object ( self, context ):
 		# Read in the data
