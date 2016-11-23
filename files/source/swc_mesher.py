@@ -389,6 +389,8 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 	max_z = FloatProperty ( default=-1 )
 	
 	scale_file_data = FloatProperty ( default=1.0, precision=4, description="Scale factor applied to data read from a file" )
+	meta_ball_scale_factor = FloatProperty ( default=1.0, precision=4, description="Scale factor applied to mesh radius" )
+
 	mesh_resolution = FloatProperty ( default=0.1, precision=4, description="Intended resolution of the final mesh" )
 	min_forced_radius = FloatProperty ( default=0.0, precision=4, description="Smallest radius allowed in all segments (smaller forced up to this radius)" )
 	num_segs_limit = IntProperty ( default=0, description="Only generate this number of segments (useful for testing settings in large neurons)" )
@@ -530,6 +532,8 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 
 			row = subbox.row()
 			row.prop ( self, "scale_file_data", text="Scale File Factor" )
+			row = subbox.row()
+			row.prop ( self, "meta_ball_scale_factor", text="Scale Radius Factor" )
 			row = subbox.row()
 			row.prop ( self, "mesh_resolution", text="Resolution of the Final Mesh" )
 			row = subbox.row()
@@ -1537,7 +1541,7 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 					while length_so_far < segment_length:
 						# Make a sphere at this point
 						ele = mball.elements.new()
-						ele.radius = r
+						ele.radius = r * self.meta_ball_scale_factor
 						ele.co = (x, y, z)
 						
 						# Move x, y, z, and r to the next point
