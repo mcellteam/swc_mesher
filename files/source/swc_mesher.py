@@ -393,6 +393,8 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 	min_forced_radius = FloatProperty ( default=0.0, precision=4, description="Smallest radius allowed in all segments (smaller forced up to this radius)" )
 	num_segs_limit = IntProperty ( default=0, description="Only generate this number of segments (useful for testing settings in large neurons)" )
 
+	new_sphere_radius = FloatProperty ( default=1, description="Radius of new vertex spheres" )
+
 	# List of Cable Models
 	cable_model_list = CollectionProperty(type=CableModelObject, name="Cable Model List")
 	active_object_index = IntProperty(name="Active Object Index", default=0)
@@ -503,7 +505,9 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			split = subbox.split()
 			col = split.column(align=True)
 			col.label("To edit the radii:")
-			col.operator ( "mnm.make_spheres" )
+			subrow = col.row()
+			subrow.operator ( "mnm.make_spheres" )
+			subrow.prop ( self, "new_sphere_radius", text="New Sphere Radius" )
 			rw = col.row()
 			rw.operator("mnm.show_spheres")
 			rw.operator("mnm.hide_spheres")
@@ -581,8 +585,8 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 		parent_index_layer.data[1].value = 1
 
 		# Radii
-		radius_layer.data[0].value = 1.0
-		radius_layer.data[1].value = 1.0
+		radius_layer.data[0].value = -1.0
+		radius_layer.data[1].value = -1.0
 
 		# Segment type - just make it a dendrite
 		segment_type_layer.data[0].value = 3
@@ -803,6 +807,8 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			loc = v.co
 			# Get the radius
 			r = radius_layer.data[i_v].value
+			if r < 0:
+			  r = self.new_sphere_radius
 			# Get the id
 			idx = int(index_number_layer.data[i_v].value)
 
@@ -1022,6 +1028,8 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 			y = v.co.y
 			z = v.co.z
 			R = radius_layer.data[i].value
+			if R < 0:
+			  R = self.new_sphere_radius
 			P = int(parent_index_layer.data[i].value)
 			# P = (packed_layer.data[i].value >> 3) & 0x03fff
 
@@ -1323,10 +1331,13 @@ class MakeNeuronMetaPropGroup(bpy.types.PropertyGroup):
 		while idx < len(id_value_list)+1:
 			i_v = id_value_list.index(idx)
 			co = mat * vs[i_v].co
+			radius_from_layer = radius_layer.data[i_v].value
+			if radius_from_layer < 0:
+			  radius_from_layer = self.new_sphere_radius
 			if idx == 1:
-				lines.append("1 " + str(int(segment_type_layer.data[i_v].value)) + " " + str(co.x) + " " + str(co.y) + " " + str(co.z) + " " + str(radius_layer.data[i_v].value) + " -1")
+				lines.append("1 " + str(int(segment_type_layer.data[i_v].value)) + " " + str(co.x) + " " + str(co.y) + " " + str(co.z) + " " + str(radius_from_layer) + " -1")
 			else:
-				lines.append(str(idx) + " " + str(int(segment_type_layer.data[i_v].value)) + " " + str(co.x) + " " + str(co.y) + " " + str(co.z) + " " + str(radius_layer.data[i_v].value) + " " + str(int(parent_index_layer.data[i_v].value)))
+				lines.append(str(idx) + " " + str(int(segment_type_layer.data[i_v].value)) + " " + str(co.x) + " " + str(co.y) + " " + str(co.z) + " " + str(radius_from_layer) + " " + str(int(parent_index_layer.data[i_v].value)))
 			idx += 1
 
 		return lines
