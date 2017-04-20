@@ -8,5 +8,6 @@ This addon can read an SWC formatted file and generate either a line object or a
 * **[Tips and Usage Notes](files/notes)**
 * **[Examples](files/examples)**
 * **[Source Files](files/source)**
+* **[Source Documentation](http://mcellteam.github.io/libMCellPP/)**
 
 ![Mesh](files/images/P40-DEV360_mesh_center.png?raw=true "Meshed Neuron")
