@@ -1,0 +1,5 @@
+<map id="swc_mesher.MakeNeuronMetaPropGroup.make_spheres_from_object" name="swc_mesher.MakeNeuronMetaPropGroup.make_spheres_from_object">
+<area shape="rect" id="node2" href="$classswc__mesher_1_1MakeNeuronMetaPropGroup.html#a9bf1339d0347f363ddb9201c2b85a05f" title="Functions to edit the cable model. " alt="" coords="271,5,505,47"/>
+<area shape="rect" id="node3" href="$classswc__mesher_1_1MakeNeuronMetaPropGroup.html#a029465a05803e41b6864fdbe029fc1a5" title="swc_mesher.MakeNeuronMeta\lPropGroup.update_cable\l_model_post_edit" alt="" coords="553,27,771,83"/>
+<area shape="rect" id="node4" href="$classswc__mesher_1_1MakeNeuronMetaPropGroup.html#a32c5a2255ca316bc0761f318990af510" title="swc_mesher.MakeNeuronMeta\lPropGroup.delete_vertex\l_spheres" alt="" coords="819,27,1036,83"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="swc_mesher.MakeNeuronMetaPropGroup.check_duplicate_verts" name="swc_mesher.MakeNeuronMetaPropGroup.check_duplicate_verts">
+<area shape="rect" id="node2" href="$classswc__mesher_1_1MakeNeuronMetaPropGroup.html#aea2975e72181df13fa7dcaa33be86687" title="swc_mesher.MakeNeuronMeta\lPropGroup.make_spheres\l_from_object" alt="" coords="288,5,505,61"/>
+<area shape="rect" id="node4" href="$classswc__mesher_1_1MakeNeuronMetaPropGroup.html#a1f534d0855d52413fb395bc5072e9212" title="swc_mesher.MakeNeuronMeta\lPropGroup.get_swc_from\l_mesh_stick" alt="" coords="288,136,505,192"/>
+<area shape="rect" id="node3" href="$classswc__mesher_1_1MakeNeuronMetaPropGroup.html#a029465a05803e41b6864fdbe029fc1a5" title="swc_mesher.MakeNeuronMeta\lPropGroup.update_cable\l_model_post_edit" alt="" coords="555,35,773,91"/>
+<area shape="rect" id="node5" href="$classswc__mesher_1_1MakeNeuronMetaPropGroup.html#a7ee64e2ff9c086396efe3f38d009797c" title="swc_mesher.MakeNeuronMeta\lPropGroup.export_cable_model" alt="" coords="553,143,775,185"/>
+</map>

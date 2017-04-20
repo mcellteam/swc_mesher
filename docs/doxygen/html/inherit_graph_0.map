@@ -1,0 +1,16 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classswc__mesher_1_1ExportCableModel__Operator.html" title="swc_mesher.ExportCableModel\l_Operator" alt="" coords="172,5,392,47"/>
+<area shape="rect" id="node4" href="$classswc__mesher_1_1CableModelAdd.html" title="swc_mesher.CableModelAdd" alt="" coords="180,71,384,98"/>
+<area shape="rect" id="node5" href="$classswc__mesher_1_1CableModelRemove.html" title="swc_mesher.CableModelRemove" alt="" coords="167,122,397,149"/>
+<area shape="rect" id="node6" href="$classswc__mesher_1_1CableModelRemoveAll.html" title="swc_mesher.CableModelRemoveAll" alt="" coords="159,173,405,199"/>
+<area shape="rect" id="node7" href="$classswc__mesher_1_1DeleteAllVertexSpheres__Operator.html" title="swc_mesher.DeleteAllVertex\lSpheres_Operator" alt="" coords="181,224,383,265"/>
+<area shape="rect" id="node8" href="$classswc__mesher_1_1HideVertexSpheres__Operator.html" title="swc_mesher.HideVertexSpheres\l_Operator" alt="" coords="169,289,395,331"/>
+<area shape="rect" id="node9" href="$classswc__mesher_1_1MakeEmptyStick__Operator.html" title="swc_mesher.MakeEmptyStick\l_Operator" alt="" coords="178,355,386,396"/>
+<area shape="rect" id="node10" href="$classswc__mesher_1_1MakeNeuronMeta__Operator.html" title="swc_mesher.MakeNeuronMeta\l_Operator" alt="" coords="173,420,391,461"/>
+<area shape="rect" id="node11" href="$classswc__mesher_1_1MakeNeuronMetaAnalyze__Operator.html" title="swc_mesher.MakeNeuronMeta\lAnalyze_Operator" alt="" coords="173,485,391,527"/>
+<area shape="rect" id="node12" href="$classswc__mesher_1_1MakeNeuronStick__Operator.html" title="swc_mesher.MakeNeuronStick\l_Operator" alt="" coords="175,551,389,592"/>
+<area shape="rect" id="node13" href="$classswc__mesher_1_1MakeSpheres__Operator.html" title="swc_mesher.MakeSpheres\l_Operator" alt="" coords="186,616,378,657"/>
+<area shape="rect" id="node14" href="$classswc__mesher_1_1ShowVertexSpheres__Operator.html" title="swc_mesher.ShowVertexSpheres\l_Operator" alt="" coords="165,681,399,723"/>
+<area shape="rect" id="node15" href="$classswc__mesher_1_1UpdateCableFromSpheres__Operator.html" title="swc_mesher.UpdateCableFrom\lSpheres_Operator" alt="" coords="173,747,391,788"/>
+<area shape="rect" id="node16" href="$classswc__mesher_1_1UpdateCablePostEdit__Operator.html" title="swc_mesher.UpdateCablePost\lEdit_Operator" alt="" coords="175,812,389,853"/>
+</map>
